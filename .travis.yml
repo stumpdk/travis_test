@@ -15,6 +15,7 @@ cache:
     - $HOME/.composer/cache
 env:
   global:
+    - SFTP_KEY=test
     - ZEND_DONT_UNLOAD_MODULES=1
     - CC="ccache gcc"
     - PATH="$PATH:~/bin"
@@ -30,3 +31,13 @@ install:
   - sudo apt-get install php5-phalcon
   - travis_retry composer install --prefer-dist --no-interaction --ignore-platform-reqs
   - travis_retry composer require --dev "phalcon/zephir:0.9.11" --ignore-platform-reqs
+    global:
+  - 'SFTP_USER=[user]'
+    - 'SFTP_PASSWORD=[password]'
+  - 'SFTP_KEY=[base64-encoded-rsa-key]'
+after_success:
+- echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
+- curl --ftp-create-dirs
+       -T filename
+       --key /tmp/sftp_rsa
+       sftp://${SFTP_USER}:${SFTP_PASSWORD}@example.com/directory/filename
