@@ -31,6 +31,7 @@ before_install:
   - phpenv config-add travis.php.ini
     #- echo "memory_limit=520M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
     # Install composer packages
+  - php -r "print(ini_get('memory_limit'));"
   - composer install --prefer-source --no-interaction
     # Install Phalcon
   - vendor/bin/install-phalcon.sh 3.0.x
