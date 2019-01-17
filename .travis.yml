@@ -2,17 +2,9 @@ language: php
 dist: trusty
 
 php:
+  - 5.5
   - 5.6
-git:
-  depth: 1
-cache:
-  apt: true
-  ccache: true
-  timeout: 691200
-  directories:
-    - .temp
-    - $HOME/.ccache
-    - $HOME/.composer/cache
+  - 7.0
 env:
   global:
     - SFTP_KEY=test
@@ -24,16 +16,29 @@ env:
     - ZEND_BACKEND="--backend=ZendEngine3" PHALCON_VERSION="v3.0.0"
     - 'SFTP_USER=[user]'
     - 'SFTP_PASSWORD=[password]'
-    - 'SFTP_KEY=[base64-encoded-rsa-key]'    
-before_script: phpenv config-add 30-phalcon.ini    
-#script: phpunit --configuration phpunit.xml
-script: false
-before_install:
-  - vendor/bin/install-phalcon.sh
+    - 'SFTP_KEY=[base64-encoded-rsa-key]' 
+    
+cache:
+  directories:
+    - vendor
+    - ~/.composer/cache
+    - ~/cphalcon
 
+before_install:
+  - composer install --prefer-source --no-interaction
+  - vendor/bin/install-phalcon.sh 3.0.x
+
+script:
+  - vendor/bin/phpunit
+  
 after_success:
 - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
 - curl --ftp-create-dirs
        -T filename
        --key /tmp/sftp_rsa
        sftp://${SFTP_USER}:${SFTP_PASSWORD}@example.com/directory/filename
+       
+notifications:
+  email: false
+
+
