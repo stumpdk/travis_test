@@ -28,6 +28,9 @@ before_install:
   - composer install --prefer-source --no-interaction
   - vendor/bin/install-phalcon.sh 3.0.x
 
+before_script:
+  - phpenv config-rm xdebug.ini
+  
 script:
   - vendor/bin/phpunit
   
