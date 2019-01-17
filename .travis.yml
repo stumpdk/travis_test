@@ -31,7 +31,7 @@ before_install:
 before_script:
   - phpenv config-rm xdebug.ini
     # Additional PHP config
-  - phpenv config-add travis.php.ini
+    #- phpenv config-add travis.php.ini
   - echo "memory_limit=520M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 script:
   - vendor/bin/phpunit
