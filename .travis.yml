@@ -23,8 +23,8 @@ env:
     - ZEND_BACKEND="--backend=ZendEngine3" PHALCON_VERSION="v3.0.0"
 before_install:
   - curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | sudo bash
-  - apt-get update
-  - apt-get install php5-phalcon
+  - sudo apt-get update
+  - sudo apt-get install php5-phalcon
   - export PHP_MAJOR="$(echo $TRAVIS_PHP_VERSION | cut -d '.' -f 1,2)"
   - sudo ln -s /home/travis/.phpenv/versions/$(phpenv version-name)/bin/phpize /usr/bin/
   - sudo ln -s /home/travis/.phpenv/versions/$(phpenv version-name)/bin/php-config /usr/bin/
