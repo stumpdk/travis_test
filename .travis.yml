@@ -25,14 +25,13 @@ cache:
     - ~/cphalcon
 
 before_install:
-  - composer install --prefer-source --no-interaction
-  - vendor/bin/install-phalcon.sh 3.0.x
-
-before_script:
   - phpenv config-rm xdebug.ini
     # Additional PHP config
     #- phpenv config-add travis.php.ini
   - echo "memory_limit=520M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - composer install --prefer-source --no-interaction
+  - vendor/bin/install-phalcon.sh 3.0.x
+  
 script:
   - vendor/bin/phpunit
   
