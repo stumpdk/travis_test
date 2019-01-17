@@ -24,16 +24,7 @@ env:
 before_install:
   - curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | sudo bash
   - sudo apt-get update
+install:
   - sudo apt-get install php5-phalcon
-  - export PHP_MAJOR="$(echo $TRAVIS_PHP_VERSION | cut -d '.' -f 1,2)"
-  - sudo ln -s /home/travis/.phpenv/versions/$(phpenv version-name)/bin/phpize /usr/bin/
-  - sudo ln -s /home/travis/.phpenv/versions/$(phpenv version-name)/bin/php-config /usr/bin/
-  - phpenv config-rm xdebug.ini || true
   - travis_retry composer install --prefer-dist --no-interaction --ignore-platform-reqs
   - travis_retry composer require --dev "phalcon/zephir:0.9.11" --ignore-platform-reqs
-
-install:
-  - git clone -q --depth=1 https://github.com/phalcon/cphalcon.git
-  - '( cd cphalcon; zephir fullclean && zephir generate $ZEND_BACKEND )'
-  - (cd cphalcon/ext; export CFLAGS="-g3 -O1 -std=gnu90 -Wall -DZEPHIR_RELEASE=1"; /usr/bin/phpize &> /dev/null && ./configure --silent --enable-phalcon &> /dev/null && make --silent -j2 &> /dev/null && make --silent install)
-  - phpenv config-add cphalcon/tests/_ci/phalcon.ini
