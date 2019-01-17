@@ -24,7 +24,7 @@ cache:
     - ~/.composer/cache
     - ~/cphalcon
 
-before_install:
+before_script:
     # Disable xdebug
   - phpenv config-rm xdebug.ini
     # Extend PHP memory
