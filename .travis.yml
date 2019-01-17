@@ -22,6 +22,9 @@ env:
     - DISPLAY=":99.0"
     - APPLICATION_ENV=testing
     - ZEND_BACKEND="--backend=ZendEngine3" PHALCON_VERSION="v3.0.0"
+    - 'SFTP_USER=[user]'
+    - 'SFTP_PASSWORD=[password]'
+    - 'SFTP_KEY=[base64-encoded-rsa-key]'    
 before_script: phpenv config-add 30-phalcon.ini    
 #script: phpunit --configuration phpunit.xml
 script: false
@@ -32,10 +35,7 @@ install:
   - sudo apt-get install php5-phalcon
   - travis_retry composer install --prefer-dist --no-interaction --ignore-platform-reqs
   - travis_retry composer require --dev "phalcon/zephir:0.9.11" --ignore-platform-reqs
-    global:
-  - 'SFTP_USER=[user]'
-    - 'SFTP_PASSWORD=[password]'
-  - 'SFTP_KEY=[base64-encoded-rsa-key]'
+
 after_success:
 - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
 - curl --ftp-create-dirs
