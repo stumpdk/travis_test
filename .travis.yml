@@ -21,6 +21,7 @@ env:
     - DISPLAY=":99.0"
     - APPLICATION_ENV=testing
     - ZEND_BACKEND="--backend=ZendEngine3" PHALCON_VERSION="v3.0.0"
+before_script: phpenv config-add 30-phalcon.ini    
 before_install:
   - curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | sudo bash
   - sudo apt-get update
