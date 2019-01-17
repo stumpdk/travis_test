@@ -6,6 +6,7 @@
         "fzaninotto/faker": "^1.6",
         "squizlabs/php_codesniffer": "^2.7",
         "codeception/codeception": "2.2.x-dev",
-        "phalcon/dd": "^1"
+        "phalcon/dd": "^1",
+        "techpivot/phalcon-ci-installer": "~1.0"
     }
  }
