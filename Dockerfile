@@ -1,4 +1,4 @@
-FROM szeist/phalcon
+FROM phalconphp/php
 
 RUN apt-get update
 RUN apt-get install phpunit --assume-yes
