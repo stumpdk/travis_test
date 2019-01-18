@@ -28,13 +28,11 @@ after_script:
   - docker rm -f app
   
 after_success:
-#- echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
-#- curl --ftp-create-dirs
-#       -T filename
-#       --key /tmp/sftp_rsa
-#       sftp://${SFTP_USER}:${SFTP_PASSWORD}@example.com/directory/filename
+  - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
+  - curl --ftp-create-dirs
+        -T filename
+        --key /tmp/sftp_rsa
+        sftp://${SFTP_USER}:${SFTP_PASSWORD}@example.com/directory/filename
        
 notifications:
   email: false
-
-
