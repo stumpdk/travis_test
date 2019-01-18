@@ -18,7 +18,6 @@ cache:
   directories:
     - vendor
     - ~/.composer/cache
-    - ~/cphalcon
 
 before_install:
   - docker build . -t apacs/test
