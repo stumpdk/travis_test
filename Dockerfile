@@ -1,4 +1,4 @@
-FROM docker-phalcon
+FROM szeist/phalcon
 
 RUN apt-get update
 RUN apt-get install phpunit --assume-yes
