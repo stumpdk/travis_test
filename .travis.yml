@@ -22,7 +22,7 @@ after_script:
   - docker rm -f app
   
 after_success:
-  - curl --ftp-create-dirs --upload-file "*.*" ftp://${FTP_USER}:${FTP_PASSWORD}@kbhkilder.dk/1508/test_deploy
+  - curl --ftp-create-dirs --upload-file "./*" ftp://${FTP_USER}:${FTP_PASSWORD}@kbhkilder.dk/1508/test_deploy
        
 notifications:
   email: false
