@@ -12,18 +12,18 @@ cache:
     #- ~/.composer/cache
 
 before_install:
-  - docker build . -t apacs/test
+#  - docker build . -t apacs/test
 
   
 script:
-  - docker run -d --name app apacs/test phpunit --help
+#  - docker run -d --name app apacs/test phpunit --help
   
 after_script:
   - docker rm -f app
   
 after_success:
   - ls -l
-  - curl --ftp-create-dirs --upload-file {} ftp://${FTP_USER}:${FTP_PASSWORD}@kbhkilder.dk/1508/test_deploy
+  - curl --ftp-create-dirs --upload-file {} ftp://${FTP_USER}:${FTP_PASSWORD}@phhw-140602.cust.powerhosting.dk/1508/test_deploy
        
 notifications:
   email: false
