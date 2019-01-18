@@ -5,12 +5,6 @@ services:
 
 php:
   - 7.0
-env:
-  global:
-    - SFTP_KEY=test
-    - 'SFTP_USER=[user]'
-    - 'SFTP_PASSWORD=[password]'
-    - 'SFTP_KEY=[base64-encoded-rsa-key]' 
     
 cache:
   directories:
@@ -28,11 +22,7 @@ after_script:
   - docker rm -f app
   
 after_success:
-  - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
-  - curl --ftp-create-dirs
-        -T filename
-        --key /tmp/sftp_rsa
-        sftp://${SFTP_USER}:${SFTP_PASSWORD}@example.com/directory/filename
+  - curl --ftp-create-dirs --upload-file "*.*" ftp://${FTP_USER}:${FTP_PASSWORD}@kbhkilder.dk/1508/test_deploy
        
 notifications:
   email: false
