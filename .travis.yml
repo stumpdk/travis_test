@@ -10,12 +10,6 @@ php:
 env:
   global:
     - SFTP_KEY=test
-    - ZEND_DONT_UNLOAD_MODULES=1
-    - CC="ccache gcc"
-    - PATH="$PATH:~/bin"
-    - DISPLAY=":99.0"
-    - APPLICATION_ENV=testing
-    - ZEND_BACKEND="--backend=ZendEngine3" PHALCON_VERSION="v3.0.0"
     - 'SFTP_USER=[user]'
     - 'SFTP_PASSWORD=[password]'
     - 'SFTP_KEY=[base64-encoded-rsa-key]' 
