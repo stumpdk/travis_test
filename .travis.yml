@@ -21,7 +21,7 @@ cache:
 
 before_install:
   - docker build . -t apacs/test
-  - docker run -d --name app -p 80:80 apacs/test
+  - docker run -d --name app apacs/test
   
 script:
   - docker exec app phpunit
