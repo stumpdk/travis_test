@@ -1,4 +1,4 @@
-FROM matricali/phalcon:7.0-stretch-3.3.1 
+FROM matricali/phalcon
 
 #RUN apt-get update
 #RUN apt-get install phpunit --assume-yes
