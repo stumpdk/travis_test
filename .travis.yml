@@ -16,7 +16,7 @@ before_install:
 
   
 script:
-  - docker run -d --name app apacs/test phpunit --help
+  - docker run apacs/test ./vendor/bin/phpunit --bootstrap tests/TestHelper.php --testdox tests
   
 after_script:
   - docker rm -f app
