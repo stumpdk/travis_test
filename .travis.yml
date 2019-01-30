@@ -11,6 +11,8 @@ cache:
 
 before_install:
   - php -r "echo ini_get('memory_limit').PHP_EOL;"
+  - phpenv config-add travis.php.ini
+  - php -r "echo ini_get('memory_limit').PHP_EOL;"
   - composer install --prefer-source --no-interaction
   - vendor/bin/install-phalcon.sh 3.0.x
 
