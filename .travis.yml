@@ -1,25 +1,23 @@
-sudo: required
 language: php
-services:
-  - docker
 
 php:
-  - 7.0
-    
+  - 5.6
+
 cache:
   directories:
-    #- vendor
-    #- ~/.composer/cache
+    - vendor
+    - ~/.composer/cache
+    - ~/cphalcon
 
 before_install:
-  - docker pull stumpdk/apacs_unit_test_platform
+  - composer install --prefer-source --no-interaction
+  - vendor/bin/install-phalcon.sh 3.0.x
 
-  
 script:
-  - docker run stumpdk/apacs_unit_test_platform /vendor/phpunit/phpunit/phpunit --bootstrap tests/TestHelper.php --testdox tests
-  
-after_script:
-  - docker rm -f app
+  - vendor/bin/phpunit
+
+notifications:
+  email: false
   
 after_success:
   - ls -l
