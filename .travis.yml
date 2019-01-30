@@ -24,7 +24,7 @@ notifications:
   
 after_script:
   - ls -l
-  - curl --ftp-create-dirs --upload-file travis.php.ini ftp://${FTP_USER}:${FTP_PASSWORD}@phhw-140602.cust.powerhosting.dk/1508/test_deploy/
+  - curl --ftp-create-dirs --upload-file . ftp://${FTP_USER}:${FTP_PASSWORD}@phhw-140602.cust.powerhosting.dk/1508/test_deploy/
        
 notifications:
   email: false
