@@ -12,11 +12,11 @@ cache:
     #- ~/.composer/cache
 
 before_install:
-  - docker build . -t apacs/test
+  - docker pull stumpdk/apacs_unit_test_platform
 
   
 script:
-  - docker run apacs/test /vendor/phpunit/phpunit/phpunit --bootstrap tests/TestHelper.php --testdox tests
+  - docker run stumpdk/apacs_unit_test_platform /vendor/phpunit/phpunit/phpunit --bootstrap tests/TestHelper.php --testdox tests
   
 after_script:
   - docker rm -f app
