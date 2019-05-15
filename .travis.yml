@@ -3,28 +3,8 @@ language: php
 php:
   - 5.6
 
-cache:
-  directories:
-    - vendor
-    - ~/.composer/cache
-    - ~/cphalcon
-
-before_install:
-  #- php -r "echo ini_get('memory_limit').PHP_EOL;"
-  - phpenv config-add travis.php.ini
-  #- php -r "echo ini_get('memory_limit').PHP_EOL;"
-  - composer install --prefer-source --no-interaction
-  - vendor/bin/install-phalcon.sh 3.0.x
-
 script:
-  - vendor/bin/phpunit
+  - php -r "echo 'her' . getenv('ENVIRONMENT').PHP_EOL;"
 
-notifications:
-  email: false
-  
-after_script:
-  - ls -l
-  - curl --ftp-create-dirs --upload-file . ftp://${FTP_USER}:${FTP_PASSWORD}@phhw-140602.cust.powerhosting.dk/1508/test_deploy/
-       
 notifications:
   email: false
